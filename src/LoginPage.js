@@ -14,7 +14,13 @@ export default LoginPage = ({ navigation }) => {
       password: password,
     })
 
-    if (error) Alert.alert(error.message)
+    if (error) {
+      Alert.alert(error.message)
+    } else {
+      setEmail(null)
+      setPassword(null)
+      Alert.alert('login successful, next page Work In Progress')
+    }
     setLoading(false)
   }
 
@@ -43,6 +49,7 @@ export default LoginPage = ({ navigation }) => {
         value={password}
         onChangeText={password => setPassword(password)}
         placeholder='Password'
+        secureTextEntry={true}
       />
       <TouchableOpacity
         style={styles.logInButton}
@@ -60,6 +67,7 @@ export default LoginPage = ({ navigation }) => {
         <TouchableOpacity 
           style={styles.signUpButton}
           onPress={gotoSignUp}
+          disabled={loading}
         >
           <Text style={[{color: 'red'}, {fontWeight: '700'}]}>Sign Up</Text>
         </TouchableOpacity>
