@@ -29,7 +29,7 @@ export default LoginPage = ({ navigation }) => {
     navigation.navigate('WorkInProgress')
   }
 
-  const gotoSignUp = () => {
+  const gotoSignUp = () => { //navigate to signup page
     navigation.navigate('Signup')
   }
 
