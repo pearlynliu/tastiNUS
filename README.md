@@ -6,5 +6,5 @@ Application uses React Native for frontend, and Supabase as the backend database
 
 //////////////Current Application features available//////////////
 
-Sign up/Login
+Sign up/Login,  
 Guest login
