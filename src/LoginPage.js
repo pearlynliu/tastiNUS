@@ -43,16 +43,20 @@ export default LoginPage = ({ navigation }) => {
         value={password}
         onChangeText={password => setPassword(password)}
         placeholder='Password'
+        secureTextEntry={true}
       />
       <TouchableOpacity
         style={styles.logInButton}
         onPress={loginWithEmail}
+        disabled={loading}
       >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       <TouchableOpacity 
         style={styles.forgetPasswordButton}
-        onPress={forgotPassword}>
+        onPress={forgotPassword}
+        disabled={loading}
+      >
         <Text style={[styles.buttonText, {paddingTop: 3}]}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style={styles.signUpText}>
@@ -60,6 +64,7 @@ export default LoginPage = ({ navigation }) => {
         <TouchableOpacity 
           style={styles.signUpButton}
           onPress={gotoSignUp}
+          disabled={loading}
         >
           <Text style={[{color: 'red'}, {fontWeight: '700'}]}>Sign Up</Text>
         </TouchableOpacity>
