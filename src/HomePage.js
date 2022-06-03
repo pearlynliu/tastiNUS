@@ -1,13 +1,24 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ImageBackground, Image } from 'react-native';
+import { useState } from 'react';
+import { supabase, Guest } from './supabaseClient';
 
 export default HomePage = ({ navigation }) => {
+
+  const [loading, setLoading] = useState(false)
   const gotoLoginPage = () => {
     navigation.navigate('Login')
   }
 
-  const gotoGuestLogin = () => {
+  const gotoGuestLogin = async () => {
     //todo
-    navigation.navigate('WorkInProgress')
+    setLoading(true)
+    const {user, error} = await supabase.auth.signIn({
+      email: Guest.email,
+      password: Guest.password,
+    })
+
+    if (error) Alert.alert(error.message)
+    setLoading(false)
   }
 
   return (
@@ -33,6 +44,7 @@ export default HomePage = ({ navigation }) => {
         <TouchableOpacity
           style={styles.guestButton}
           onPress={gotoGuestLogin}
+          disabled={loading}
         >
           <Text style={styles.guestText}>Continue as a Guest</Text>
         </TouchableOpacity>

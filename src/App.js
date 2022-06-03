@@ -1,16 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpPage from './SignUpPage';
-import LoginPage from './LoginPage';
 import LoginNavigation from './LoginNavigation';
-import HomePage from './HomePage';
+import Main from './Main';
+import { supabase } from './supabaseClient';
  
 export default function App() {
-  return (
-    <LoginNavigation/>
-  );
+  const [session, setSession] = useState(false)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+  if (!session) {
+    return (<LoginNavigation/>)
+  } else {
+    return <Main key={session.user.id} session={session} />
+  }
 }
 
 const styles = StyleSheet.create({
