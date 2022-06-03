@@ -54,12 +54,15 @@ export default LoginPage = ({ navigation }) => {
       <TouchableOpacity
         style={styles.logInButton}
         onPress={loginWithEmail}
+        disabled={loading}
       >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       <TouchableOpacity 
         style={styles.forgetPasswordButton}
-        onPress={forgotPassword}>
+        onPress={forgotPassword}
+        disabled={loading}
+      >
         <Text style={[styles.buttonText, {paddingTop: 3}]}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style={styles.signUpText}>
