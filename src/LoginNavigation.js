@@ -11,23 +11,28 @@ export default LoginNavigation = () => {
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator 
+        initialRouteName="Home"
+      >
         <Stack.Screen
           name='Home'
           component={HomePage}
+          options={{headerShown: false}}
         />
         <Stack.Screen 
           name="Login" 
           component={LoginPage}
           options={{
-            headerStyle: {backgroundColor: 'cornsilk'}
+            headerStyle: {backgroundColor: 'cornsilk'},
+            title: ''
           }}
         />
         <Stack.Screen 
           name="Signup" 
           component={SignUpPage}
           options={{
-            headerStyle: {backgroundColor: 'cornsilk'}
+            headerStyle: {backgroundColor: 'cornsilk'},
+            title: ''
           }}
         />
         <Stack.Screen 

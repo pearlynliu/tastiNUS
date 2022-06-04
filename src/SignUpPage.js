@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient'
-import { Keyboard } from 'react-native-web';
 
 export default SignUpPage = () => {
   const [firstName, setFirstName] = React.useState(null)
@@ -44,46 +43,50 @@ export default SignUpPage = () => {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.text}>Create an Account</Text>
-        <TextInput
-          style={styles.input}
-          value={firstName}
-          onChangeText={firstName => setFirstName(firstName)}
-          placeholder={'First Name'}
-        />
-        <TextInput
-          style={styles.input}
-          value={lastName}
-          onChangeText={lastName => setLastName(lastName)}
-          placeholder={'Last Name'}
-        />
-        <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={email=> setEmail(email)}
-          placeholder={'Email'}
-        />
-        <TextInput
-          style={styles.input}
-          value={password}
-          onChangeText={password => setPassword(password)}
-          placeholder={'Enter your password'}
-          secureTextEntry={true}
-        />
-        <TextInput
-          style={styles.input}
-          value={confirmPassword}
-          onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
-          placeholder={'Repeat your password'}
-          secureTextEntry={true}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={signUpWithEmail}
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.container}>
+            <Text style={styles.text}>Create an Account</Text>
+            <TextInput
+              style={styles.input}
+              value={firstName}
+              onChangeText={firstName => setFirstName(firstName)}
+              placeholder={'First Name'}
+            />
+            <TextInput
+              style={styles.input}
+              value={lastName}
+              onChangeText={lastName => setLastName(lastName)}
+              placeholder={'Last Name'}
+            />
+            <TextInput
+              style={styles.input}
+              value={email}
+              onChangeText={email=> setEmail(email)}
+              placeholder={'Email'}
+            />
+            <TextInput
+              style={styles.input}
+              value={password}
+              onChangeText={password => setPassword(password)}
+              placeholder={'Enter your password'}
+              secureTextEntry={true}
+            />
+            <TextInput
+              style={styles.input}
+              value={confirmPassword}
+              onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
+              placeholder={'Repeat your password'}
+              secureTextEntry={true}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={signUpWithEmail}
+              disabled={loading}
+            >
+              <Text style={styles.buttonText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
       </SafeAreaView>
     )
 }
