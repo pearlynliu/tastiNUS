@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient';
 
@@ -34,47 +34,49 @@ export default LoginPage = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView
-      style={styles.container}
-    >
-      <Text style={styles.loginText}>Log in to Your Account</Text>
-      <TextInput
-        style={styles.input}
-        value={email}
-        onChangeText={email => setEmail(email)}
-        placeholder="Email"
-      />
-      <TextInput
-        style={styles.input}
-        value={password}
-        onChangeText={password => setPassword(password)}
-        placeholder='Password'
-        secureTextEntry={true}
-      />
-      <TouchableOpacity
-        style={styles.logInButton}
-        onPress={loginWithEmail}
-        disabled={loading}
-      >
-        <Text style={styles.buttonText}>Log In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.forgetPasswordButton}
-        onPress={forgotPassword}
-        disabled={loading}
-      >
-        <Text style={[styles.buttonText, {paddingTop: 3}]}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <View style={styles.signUpText}>
-        <Text style={{fontWeight: 'bold'}}>Don't have an account?</Text>
-        <TouchableOpacity 
-          style={styles.signUpButton}
-          onPress={gotoSignUp}
-          disabled={loading}
-        >
-          <Text style={[{color: 'red'}, {fontWeight: '700'}]}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.container}>
+          <Text style={styles.loginText}>Log in to Your Account</Text>
+          <TextInput
+            style={styles.input}
+            value={email}
+            onChangeText={email => setEmail(email)}
+            placeholder="Email"
+          />
+          <TextInput
+            style={styles.input}
+            value={password}
+            onChangeText={password => setPassword(password)}
+            placeholder='Password'
+            secureTextEntry={true}
+          />
+          <TouchableOpacity
+            style={styles.logInButton}
+            onPress={loginWithEmail}
+            disabled={loading}
+          >
+            <Text style={styles.buttonText}>Log In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.forgetPasswordButton}
+            onPress={forgotPassword}
+            disabled={loading}
+          >
+            <Text style={[styles.buttonText, {paddingTop: 3}]}>Forgot Password?</Text>
+          </TouchableOpacity>
+          <View style={styles.signUpText}>
+            <Text style={{fontWeight: 'bold'}}>Don't have an account?</Text>
+            <TouchableOpacity 
+              style={styles.signUpButton}
+              onPress={gotoSignUp}
+              disabled={loading}
+            >
+              <Text style={[{color: 'red'}, {fontWeight: '700'}]}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   )
 }
