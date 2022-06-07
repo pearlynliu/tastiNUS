@@ -4,10 +4,10 @@ import { supabase } from "./supabaseClient";
 import 'react-native-url-polyfill/auto';
 
 export default Main = ({ session }) => {
-  const [name, setName] = useState('h')
+  const [name, setName] = useState('')
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
+  useEffect(() => { 
     let mounted = true
 
     if (mounted) {
@@ -17,7 +17,7 @@ export default Main = ({ session }) => {
 
   }, [session])
 
-  const getProfile = async () => {
+  const getProfile = async () => { // get profile data from supabase
     try {
       setLoading(true)
       const user = supabase.auth.user()
