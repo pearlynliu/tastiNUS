@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Imag
 import { useState } from 'react';
 import { supabase, Guest } from './supabaseClient';
 
-export default HomePage = ({ navigation }) => {
+export default WelcomePage = ({ navigation }) => {
 
   const [loading, setLoading] = useState(false)
   const gotoLoginPage = () => {

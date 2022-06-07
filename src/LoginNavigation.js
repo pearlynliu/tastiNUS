@@ -2,7 +2,7 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
-import HomePage from './HomePage';
+import WelcomePage from './WelcomePage';
 import WorkInProgress from './WorkInProgress';
 
 
@@ -12,11 +12,11 @@ export default LoginNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="Home"
+        initialRouteName="Welcome"
       >
         <Stack.Screen
-          name='Home'
-          component={HomePage}
+          name='Welcome'
+          component={WelcomePage}
           options={{headerShown: false}}
         />
         <Stack.Screen 
