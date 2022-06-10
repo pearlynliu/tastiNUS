@@ -24,6 +24,7 @@ export default LoginNavigation = () => {
           name="Login" 
           component={LoginPage}
           options={{
+            headerShown: false,
             headerStyle: {backgroundColor: 'cornsilk'},
             title: ''
           }}
@@ -32,6 +33,7 @@ export default LoginNavigation = () => {
           name="Signup" 
           component={SignUpPage}
           options={{
+            headerShown: false,
             headerStyle: {backgroundColor: 'cornsilk'},
             title: ''
           }}

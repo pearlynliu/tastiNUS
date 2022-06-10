@@ -27,10 +27,6 @@ export default FoodPage = ({ route, navigation }) => {
       setFoodData(data)
     }
   } 
-  
-  const goBack = () => {
-    navigation.navigate('Home')
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,9 +36,10 @@ export default FoodPage = ({ route, navigation }) => {
         source={{url: foodData.image_url}}
         resizeMode={'cover'}
       >
-        <View style={styles.backButton}>
-        <BackButton onPress={goBack}/>
-      </View>
+        <BackButton 
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        />
       </ImageBackground>
       <Text style={styles.storeName}>{foodData.name}</Text>
       <View style={styles.locationContainer}>
@@ -59,7 +56,6 @@ export default FoodPage = ({ route, navigation }) => {
         />
         <Text style={styles.detailsText}>{foodData.details}</Text>
       </View>
-
     </SafeAreaView>
   )
 }
@@ -74,6 +70,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start', 
     marginLeft: 10, 
     marginTop: 10,
+    borderWidth: 1,
+    backgroundColor: 'white'
   },
   storeName: {
     fontSize: 28,

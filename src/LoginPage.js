@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient';
+import BackButton from './components/BackButton';
 
 export default LoginPage = ({ navigation }) => {
   const [email, setEmail] = React.useState(null)
@@ -36,6 +37,10 @@ export default LoginPage = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
+          <BackButton
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          />
           <Text style={styles.loginText}>Log in to Your Account</Text>
           <TextInput
             style={styles.input}
@@ -85,6 +90,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'cornsilk',
     alignItems: 'center',
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: -20,
   },
   input: {
     width: 300,
