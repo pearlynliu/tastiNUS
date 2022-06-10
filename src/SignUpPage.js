@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Aler
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient'
 
-export default SignUpPage = () => {
+export default SignUpPage = ({navigation}) => {
   const [firstName, setFirstName] = React.useState(null)
   const [lastName, setLastName] = React.useState(null)
   const [email, setEmail] = React.useState(null)
@@ -45,6 +45,10 @@ export default SignUpPage = () => {
       <SafeAreaView style={styles.container}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.container}>
+            <BackButton
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+            />
             <Text style={styles.text}>Create an Account</Text>
             <TextInput
               style={styles.input}
@@ -97,13 +101,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'cornsilk',
   },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: -20,
+  },
   text: {
     fontSize: 22,
     color: 'darkorange',
     fontWeight: '800',
-    alignSelf: 'flex-start',
-    marginLeft: 40,
-    marginTop: 65,
+    marginTop: 50,
     marginBottom: 10,
   },
   input: {

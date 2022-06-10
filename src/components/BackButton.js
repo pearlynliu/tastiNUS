@@ -1,12 +1,20 @@
+/**
+ * creates a button with a back arrow to function as a go-back button
+ * 
+ * @params {onPress} function that is executed when button is pressed (just use navigation.goBack() and it will work)
+ * @params {style} style of the button
+ * @params {arrowStyle} style of the arrow icon
+ */
+
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-export default BackButton = ({onPress}) => {
+export default BackButton = ({onPress, style, arrowStyle}) => {
   return (
   <TouchableOpacity
-    style={styles.button}
+    style={[styles.button, style]}
     onPress={onPress}
   >
-    <Image style={styles.image} source={require('./../images/back_button_icon.png')}/>
+    <Image style={[styles.image, arrowStyle]} source={require('./../images/back_button_icon.png')}/>
   </TouchableOpacity>
   )
 }
@@ -18,8 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
-    borderWidth: 1,
-    backgroundColor: 'white'
+    
   },
   image: {
     width: 20,
