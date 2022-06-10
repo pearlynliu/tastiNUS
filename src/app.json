@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tastiNUS_project_code",
-    "slug": "tastiNUS_project_code",
+    "name": "tastiNUS",
+    "slug": "tastiNUS",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.wongyx.tastiNUS"
     },
     "web": {
       "favicon": "./assets/favicon.png"
