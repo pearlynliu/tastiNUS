@@ -1,9 +1,10 @@
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import WelcomePage from './WelcomePage';
 import WorkInProgress from './WorkInProgress';
+import ForgetPasswordPage from './ForgetPasswordPage';
 
 
 export default LoginNavigation = () => {
@@ -36,8 +37,12 @@ export default LoginNavigation = () => {
           }}
         />
         <Stack.Screen 
-          name="WorkInProgress" 
+          name="ForgetPassword" 
           component={WorkInProgress}
+          options={{
+            headerStyle: {backgroundColor: 'cornsilk'},
+            title: ''
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

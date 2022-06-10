@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginNavigation from './LoginNavigation';
 import Main from './Main';
+import ResetPasswordPage from './ResetPasswordPage';
 import { supabase } from './supabaseClient';
  
 export default function App() {
@@ -26,8 +26,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: '#fff',
-    //alignItems: 'center',
-    //justifyContent: 'center',
   },
 });

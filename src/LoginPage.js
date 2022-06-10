@@ -19,14 +19,13 @@ export default LoginPage = ({ navigation }) => {
     } else {
       setEmail(null)
       setPassword(null)
-      Alert.alert('login successful, next page Work In Progress')
     }
     setLoading(false)
   }
 
   const forgotPassword = () => {
     //todo
-    navigation.navigate('WorkInProgress')
+    navigation.navigate('ForgetPassword')
   }
 
   const gotoSignUp = () => { //navigate to signup page
@@ -86,7 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'cornsilk',
     alignItems: 'center',
-    //justifyContent: 'space-between',
   },
   input: {
     width: 300,
