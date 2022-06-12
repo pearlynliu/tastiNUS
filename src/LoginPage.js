@@ -90,11 +90,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'cornsilk',
     alignItems: 'center',
+    width: '100%',
   },
   backButton: {
     alignSelf: 'flex-start',
     marginTop: 10,
-    marginLeft: -20,
+    marginLeft: 20,
   },
   input: {
     width: 300,

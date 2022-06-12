@@ -2,15 +2,14 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import HomePage from './HomePage';
-import FoodPage from './FoodPage';
-import WorkInProgress from './WorkInProgress';
+import ProfilePage from './ProfilePage';
+import SettingsPage from './SettingsPage';
 
-export default HomePageNavigation = ({ navigation, route }) => {
-  
+export default ProfilePageNavigation = ({ navigation, route }) => {
+
   React.useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);
-    if (routeName != 'Home' && routeName != undefined) {
+    if (routeName != 'Profile' && routeName != undefined) {
     navigation.setOptions({ tabBarStyle: { display: "none" } });
     } else {
       navigation.setOptions({ 
@@ -32,28 +31,18 @@ export default HomePageNavigation = ({ navigation, route }) => {
 
   return (
     <Stack.Navigator
-      initialRouteName='Home'
-     >
-       <Stack.Screen
-         name='Home'
-         component={HomePage}
-         options={{
-           headerShown: false,
-           headerBackTitleVisible: false,
-          }}
-         
-       />
-       <Stack.Screen
-         name='RandomGenerator'
-         component={WorkInProgress}
-       />
+      initialRouteName='Profile'
+    >
       <Stack.Screen
-        name='Search'
-        component={WorkInProgress}
+        name='Profile'
+        component={ProfilePage}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
-        name='Food'
-        component={FoodPage}
+        name='Settings'
+        component={SettingsPage}
         options={{
           headerShown: false,
         }}
