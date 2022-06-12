@@ -18,7 +18,8 @@ const StoreButton = ({ name, image_url, id }) => (
 );
 
 export default HomePage = ({ session, navigation }) => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState()
+  const [avatar, setAvatar] = useState()
   const [loading, setLoading] = useState(false)
   const [stores, setStores] = useState([])
 
@@ -51,13 +52,7 @@ export default HomePage = ({ session, navigation }) => {
   }
 
   useEffect(() => { 
-    let mounted = true
-
-    if (mounted) {
-      getProfile()
-    }
-    return () => mounted = false
-
+    getProfile()
   }, [session])
 
   const getProfile = async () => { // get profile data from supabase
@@ -66,7 +61,7 @@ export default HomePage = ({ session, navigation }) => {
       const user = supabase.auth.user()
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`first_name`)
+        .select(`first_name, avatar_url`)
         .eq('id', user.id)
         .single()
 
@@ -76,6 +71,7 @@ export default HomePage = ({ session, navigation }) => {
   
         if (data) {
           setName(data.first_name)
+          setAvatar(data.avatar_url)
         }
     } catch (error){
       alert(error.message)
@@ -120,7 +116,9 @@ export default HomePage = ({ session, navigation }) => {
         </TouchableOpacity>
         <Image
         style={styles.profilePic}
-        source={require('./images/profile_placeholder.png')}
+        source={avatar 
+                  ? {url: avatar} 
+                  : require('./images/profile_placeholder.png')}
         />
       </View>
       <View style={styles.helloTextContainer}>
@@ -165,6 +163,7 @@ const styles = StyleSheet.create({
   profilePic: {
     width: 60,
     height: 60,
+    borderRadius: 30,
   },
   imageContainer: {
     flexDirection: 'row',

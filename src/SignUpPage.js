@@ -100,11 +100,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'cornsilk',
+    width: '100%',
   },
   backButton: {
     alignSelf: 'flex-start',
     marginTop: 10,
-    marginLeft: -20,
+    marginLeft: 20,
   },
   text: {
     fontSize: 22,

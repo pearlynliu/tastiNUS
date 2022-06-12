@@ -2,14 +2,17 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, Image, View } from "r
 import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { supabase } from "./supabaseClient";
+import { supabase, Guest } from "./supabaseClient";
 import HomePage from "./HomePage";
 import HomePageNavigation from "./HomePageNavigation";
 import ProfilePage from './ProfilePage'
 import WorkInProgress from "./WorkInProgress";
 import 'react-native-url-polyfill/auto';
+import GuestPage from "./GuestPage";
+import ProfilePageNavigation from "./ProfilePageNavigation";
 
 export default Main = () => {
+  const user = supabase.auth.user()
   const Tab = createBottomTabNavigator()
 
   return (
@@ -26,8 +29,8 @@ export default Main = () => {
           options={tabs.cameratab}
         />
         <Tab.Screen
-          name='Profile'
-          component={ProfilePage}
+          name='ProfilePage'
+          component={user.id != Guest.id ? ProfilePageNavigation : GuestPage}
           options={tabs.profiletab}
         />
       </Tab.Navigator>
@@ -79,14 +82,14 @@ const tabs = StyleSheet.create({
   tabBar: {
     tabBarShowLabel: false,
     tabBarStyle: {
-     position: 'absolute',
-      bottom: 40,
+      position: 'absolute',
+      bottom: 30,
       left: 20,
       right: 20,
       elevation: 0,
       borderRadius: 30,
       height: 60,
-    }
+    },
   }
 })
 

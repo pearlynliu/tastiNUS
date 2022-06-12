@@ -7,7 +7,8 @@ Application uses React Native for frontend, and Supabase as the backend database
 //////////////Current Application features available//////////////
 
 Sign up/Login,  
-Guest login,
-Home page,
-Profile page, (currently can only sign out of the app)
-Pages for each food store (currently only accessible from Home page)
+Guest login,  
+Home page,  
+Profile page, (currently can only sign out of the app)  
+Setting page, (allow users to update their profile)  
+Pages for each food store (currently only accessible from Home page)  
