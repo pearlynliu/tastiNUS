@@ -1,4 +1,4 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ImageBackground, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import BackButton from "./components/BackButton";
@@ -16,7 +16,7 @@ export default FoodPage = ({ route, navigation }) => {
 
   const fetchData = async () => {
     const { data, error } = await supabase
-      .from('food_stores_test')
+      .from('food_stores')
       .select('*')
       .eq('id', id)
       .single()
@@ -30,6 +30,7 @@ export default FoodPage = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
       <ImageBackground
         style={styles.storeImage}
         imageStyle={{borderRadius: 30}}
@@ -54,8 +55,9 @@ export default FoodPage = ({ route, navigation }) => {
           style={styles.clockIcon}
           source={require('./images/clock_icon.png')}
         />
-        <Text style={styles.detailsText}>{foodData.details}</Text>
+        <Text style={styles.detailsText}>{foodData.operating_hours}</Text>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'white',
+    width: '100%',
   },
   backButton: {
     alignSelf: 'flex-start', 
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '500',
     marginTop: 12,
+    textAlign: 'center'
   },
   storeImage: {
     width: 320,
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start', 
     alignItems: 'center',
-    marginLeft: 60, 
+    marginLeft: 10, 
     marginTop: 5,
   },
   locationIcon: {
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flexDirection: 'row',
     alignSelf: 'flex-start', 
-    marginLeft: 59, 
+    marginLeft: 9, 
     marginTop: 5,
   },
   clockIcon: {
