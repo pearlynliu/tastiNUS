@@ -86,10 +86,10 @@ export default HomePage = ({ session, navigation }) => {
 
   const fetchStores = async () => {
     const { data, error } = await supabase
-      .from('food_stores_test')
+      .from('food_stores')
       .select('*')
-      .order('id', { ascending: true })
-      .limit(5)
+      .order('id', { ascending: false })
+      .limit(8)
     if (error) alert(error.message)
     else setStores(data)
   }
@@ -237,9 +237,13 @@ const styles = StyleSheet.create({
     height: 110,
     borderRadius: 60,
     margin: 15,
+    marginBottom: 10,
   },
   storeText: {
     fontSize: 16,
     fontWeight: '500',
+    textAlign: 'center',
+    width: 100,
+    height: 50,
   }
 })
