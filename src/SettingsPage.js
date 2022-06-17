@@ -1,4 +1,4 @@
-import { View, SafeAreaView, Text, StyleSheet, Image, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, SafeAreaView, Text, StyleSheet, Image, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Modal } from 'react-native';
 import { useState, useEffect} from 'react';
 import { supabase } from './supabaseClient';
 import * as ImagePicker from 'expo-image-picker';
@@ -10,6 +10,7 @@ export default SettingsPage = ({ navigation }) => {
   const [isAvatarNew, setIsAvatarNew] = useState(false)
   const [firstName, setFirstName] = useState()
   const [lastName, setLastName] = useState()
+  const [isSigningOut, setIsSigningOut] = useState(false)
   const [loading, setLoading] = useState(false)
   const user = supabase.auth.user()
 
@@ -142,10 +143,18 @@ export default SettingsPage = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
-          <BackButton
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          />
+          <View style={styles.topBar}>
+            <BackButton
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+            />
+            <TouchableOpacity
+              style={styles.signoutButton}
+              onPress={() => setIsSigningOut(true)}
+            >
+              <Text style={styles.signoutText}>Sign out</Text>
+            </TouchableOpacity>
+          </View>
           <Text style={styles.editProfileText}>Edit Profile</Text>
           <Image
             style={styles.profilePicture}
@@ -198,6 +207,31 @@ export default SettingsPage = ({ navigation }) => {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <Modal
+        animationType="slide"
+        visible={isSigningOut}
+        transparent={true}
+      >
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <View style={styles.signoutModal}>
+            <Text style={styles.modalText}>Sign out of your account?</Text>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => supabase.auth.signOut()}
+              >
+                <Text style={{color: 'green', fontSize: 20}}>Confirm</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setIsSigningOut(false)}
+              >
+                <Text style={{color: 'red', fontSize: 20}}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   )
 }
@@ -209,10 +243,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'cornsilk',
     width: '100%',
   },
+  topBar: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between'
+  },
   backButton: {
     alignSelf: 'flex-start',
     marginTop: 10,
     marginLeft: 20,
+  },
+  signoutButton: {
+    width: 70,
+    height: 30,
+    //backgroundColor: 'blue',
+    marginTop: 10,
+    marginRight: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  signoutText: {
+    color: 'red',
+    fontWeight: '600'
   },
   editProfileText: {
     fontSize: 30,
@@ -286,5 +338,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: 'green'
-  }
+  },
+  signoutModal: {
+    width: 300,
+    height: 200,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 30
+  },
+  modalText: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 40,
+  },
+  modalButton: {
+    //backgroundColor: 'blue',
+    width: 80,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 30,
+  },
 })

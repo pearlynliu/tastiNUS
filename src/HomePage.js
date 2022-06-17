@@ -3,20 +3,6 @@ import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import 'react-native-url-polyfill/auto';
 
-const StoreButton = ({ name, image_url, id }) => (
-  <TouchableOpacity
-    style={styles.storeButton}
-    onPress={gotoFoodPage}
-  >
-    <Image
-      style={styles.storeImage}
-      source={{url: image_url}}
-      resizeMode= 'cover'
-    />
-    <Text style={styles.storeText}>{name}</Text>
-  </TouchableOpacity>
-);
-
 export default HomePage = ({ session, navigation }) => {
   const [name, setName] = useState()
   const [avatar, setAvatar] = useState()
@@ -224,7 +210,6 @@ const styles = StyleSheet.create({
   },
   storeButton: {
     alignItems: 'center',
-    // justifyContent: 'center',
     width: 130,
     height: 180,
     borderWidth: 1,

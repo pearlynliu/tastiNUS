@@ -10,6 +10,7 @@ import WorkInProgress from "./WorkInProgress";
 import 'react-native-url-polyfill/auto';
 import GuestPage from "./GuestPage";
 import ProfilePageNavigation from "./ProfilePageNavigation";
+import SearchOptionsPage from "./SearchOptionsPage";
 
 export default Main = () => {
   const user = supabase.auth.user()
@@ -54,10 +55,10 @@ const CameraTabButton = ({children, onPress}) => {
 const tabs = StyleSheet.create({
   hometab: {
     headerShown: false,
-    tabBarIcon: () => 
+    tabBarIcon: (props) => 
     (<Image 
         source={require('./images/house_icon.png')}
-        style={{width:30, height: 30, tintColor:'orange'}}
+        style={{width:30, height: 30, tintColor: props.color}}
     />),
   },
   cameratab: {
@@ -73,10 +74,10 @@ const tabs = StyleSheet.create({
   },
   profiletab: {
     headerShown: false,
-    tabBarIcon: () => 
+    tabBarIcon: (props) => 
     (<Image 
         source={require('./images/profile_icon.png')}
-        style={{width:30, height: 30, tintColor:'black'}}
+        style={{width:30, height: 31, tintColor: props.color}}
     />),
   },
   tabBar: {
@@ -90,6 +91,8 @@ const tabs = StyleSheet.create({
       borderRadius: 30,
       height: 60,
     },
+    tabBarActiveTintColor: 'orange',
+    tabBarInactiveTintColor: 'grey',
   }
 })
 
