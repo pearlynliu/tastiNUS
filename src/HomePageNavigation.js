@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import HomePage from './HomePage';
 import FoodPage from './FoodPage';
+import SearchPage from './SearchPage';
 import WorkInProgress from './WorkInProgress';
 
 export default HomePageNavigation = ({ navigation, route }) => {
@@ -49,7 +50,10 @@ export default HomePageNavigation = ({ navigation, route }) => {
        />
       <Stack.Screen
         name='Search'
-        component={WorkInProgress}
+        component={SearchPage}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name='Food'
