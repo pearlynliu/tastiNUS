@@ -1,16 +1,12 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
-import { useState, useEffect } from 'react';
+import {  StyleSheet, TouchableOpacity, Image, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { supabase, Guest } from "./supabaseClient";
-import HomePage from "./HomePage";
 import HomePageNavigation from "./HomePageNavigation";
-import ProfilePage from './ProfilePage'
-import WorkInProgress from "./WorkInProgress";
 import 'react-native-url-polyfill/auto';
 import GuestPage from "./GuestPage";
 import ProfilePageNavigation from "./ProfilePageNavigation";
-import SearchOptionsPage from "./SearchOptionsPage";
+import ReviewsPage from "./ReviewsPage";
 
 export default Main = () => {
   const user = supabase.auth.user()
@@ -26,7 +22,7 @@ export default Main = () => {
         />
         <Tab.Screen
           name='Camera'
-          component={WorkInProgress}
+          component={user.id != Guest.id ? ReviewsPage : GuestPage}
           options={tabs.cameratab}
         />
         <Tab.Screen

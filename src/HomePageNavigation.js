@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import HomePage from './HomePage';
