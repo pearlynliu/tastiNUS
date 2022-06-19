@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
-import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import ProfilePage from './ProfilePage';
 import SettingsPage from './SettingsPage';
+import VoucherPage from './VoucherPage';
 
 export default ProfilePageNavigation = ({ navigation, route }) => {
 
@@ -43,6 +43,13 @@ export default ProfilePageNavigation = ({ navigation, route }) => {
       <Stack.Screen
         name='Settings'
         component={SettingsPage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='Voucher'
+        component={VoucherPage}
         options={{
           headerShown: false,
         }}

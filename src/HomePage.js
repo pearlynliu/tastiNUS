@@ -1,6 +1,7 @@
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
+import { useSelector } from "react-redux";
 import 'react-native-url-polyfill/auto';
 
 export default HomePage = ({ session, navigation }) => {
@@ -8,6 +9,7 @@ export default HomePage = ({ session, navigation }) => {
   const [avatar, setAvatar] = useState()
   const [loading, setLoading] = useState(false)
   const [stores, setStores] = useState([])
+  const refresh = useSelector((state) => state.refreshStore.refresh)
 
   const StoreButton = ({ name, image_url, id }) => ( //food store buttons being listed 
     <TouchableOpacity
@@ -39,7 +41,7 @@ export default HomePage = ({ session, navigation }) => {
 
   useEffect(() => { 
     getProfile()
-  }, [session])
+  }, [session, refresh])
 
   const getProfile = async () => { // get profile data from supabase
     try {
@@ -68,7 +70,7 @@ export default HomePage = ({ session, navigation }) => {
 
   useEffect(() => {
     fetchStores()
-  }, [])
+  }, [refresh])
 
   const fetchStores = async () => {
     const { data, error } = await supabase

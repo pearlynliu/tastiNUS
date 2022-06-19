@@ -1,9 +1,10 @@
 import { useState, useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import LoginNavigation from './LoginNavigation';
 import Main from './Main';
-import ResetPasswordPage from './ResetPasswordPage';
 import { supabase } from './supabaseClient';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
  
 export default function App() {
   const [session, setSession] = useState(false)
@@ -19,7 +20,11 @@ export default function App() {
   if (!session) {
     return (<LoginNavigation/>)
   } else {
-    return <Main key={session.user.id} session={session} />
+    return (
+      <Provider store={store}>
+        <Main key={session.user.id} session={session} />
+      </Provider>
+    )
   }
 }
 

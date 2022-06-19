@@ -1,11 +1,11 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 
 export default SearchResultsPage = ({ navigation, search }) => {
   const [stores, setStores] = useState([])
 
-  const StoreButton = ({ name, image_url, id, keywords, location }) => ( //food store buttons being listed 
+  const StoreButton = ({ name, image_url, id, keywords, location, total_rating, review_count }) => ( //food store buttons being listed 
     <TouchableOpacity
       style={styles.storeButton}
       onPress={() => gotoFoodPage(id)}
@@ -25,6 +25,13 @@ export default SearchResultsPage = ({ navigation, search }) => {
           />
           <Text style={styles.locationText}>{location}</Text>
       </View>
+      <View style={styles.starContainer}>
+          <Text> {review_count == 0 ? review_count : (total_rating / review_count).toFixed(1)} </Text>
+          <Image
+            style={styles.starIcon}
+            source={require('./images/star.png')}
+          />
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -36,6 +43,8 @@ export default SearchResultsPage = ({ navigation, search }) => {
       id={item.id}
       keywords={item.keywords}
       location={item.location}
+      total_rating={item.total_rating}
+      review_count={item.review_count}
     />
   );
 
@@ -115,5 +124,21 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginLeft: 3,
     color: 'grey',
+  },
+  starContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 25,
+    backgroundColor: 'white',
+    marginLeft: -80,
+    marginTop: 15,
+    borderRadius: 10,
+    borderWidth: 0.5,
+  },
+  starIcon: {
+    width: 20,
+    height: 20,
   },
 })

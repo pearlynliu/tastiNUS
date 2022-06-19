@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, ImageBackground, Image } from 'react-native';
 import { useState, useEffect } from 'react';
-import { supabase } from './supabaseClient';
 import DATA from './FoodSuggestionData';
 
 export default SearchOptionsPage = ({ search, onPress }) => {

@@ -1,6 +1,8 @@
 import { View, SafeAreaView, Text, StyleSheet, Image, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Modal } from 'react-native';
 import { useState, useEffect} from 'react';
 import { supabase } from './supabaseClient';
+import { useSelector, useDispatch } from "react-redux";
+import { refreshApp } from "./store/refresh";
 import * as ImagePicker from 'expo-image-picker';
 import BackButton from './components/BackButton'
 
@@ -12,11 +14,13 @@ export default SettingsPage = ({ navigation }) => {
   const [lastName, setLastName] = useState()
   const [isSigningOut, setIsSigningOut] = useState(false)
   const [loading, setLoading] = useState(false)
+  const refresh = useSelector((state) => state.refreshStore.refresh)
+  const dispatch = useDispatch()
   const user = supabase.auth.user()
 
   useEffect(() => {
     getProfile()
-  }, [])
+  }, [refresh])
 
 
   const getProfile = async () => { // get profile data from supabase
@@ -118,7 +122,8 @@ export default SettingsPage = ({ navigation }) => {
       }
     }
     setLoading(false)
-    alert('Edits saved successfully. Login again to see changes')
+    dispatch(refreshApp())
+    alert('Edits saved successfully')
   }
 
 

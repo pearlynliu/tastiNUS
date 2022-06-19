@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ImageBackground, Image } from 'react-native';
-import { useState, useEffect } from 'react';
+import { StyleSheet, View, TextInput, TouchableOpacity, SafeAreaView, Image } from 'react-native';
+import { useState } from 'react';
 import BackButton from './components/BackButton';
 import SearchOptionsPage from './SearchOptionsPage';
 import SearchResultsPage from './SearchResultsPage';

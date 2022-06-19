@@ -1,4 +1,4 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ImageBackground, ScrollView } from "react-native";
+import { LogBox, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ImageBackground, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import BackButton from "./components/BackButton";
@@ -7,8 +7,34 @@ import 'react-native-url-polyfill/auto';
 export default FoodPage = ({ route, navigation }) => {
   const { id } = route.params
   const [foodData, setFoodData] = useState([])
+  const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(false)
-  const [test, setTest] = useState()
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
+  const getReviews = async () => {
+    try {
+      setLoading(true)
+      let { data, error, status } = await supabase
+        .from('reviews')
+        .select(`*`)
+        .eq('store_id', id)
+
+        if (error && status !== 406) {
+          throw error
+        }
+  
+        if (data) {
+          setReviews(data)
+        }
+    } catch (error){
+      alert(error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     fetchData()
@@ -28,9 +54,44 @@ export default FoodPage = ({ route, navigation }) => {
     }
   } 
 
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+}, [])
+
+  const Reviews = ({ title, image_url, description, rating }) => ( //food store buttons being listed 
+    <View style={styles.review}>
+      <Image
+        style={styles.reviewImage}
+        source={{url: image_url}}
+      />
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.titleText}> {title} </Text>
+        <Text style={styles.descriptionText}> {description} </Text>
+        <View style={styles.starContainer}>
+          <Text> {rating} </Text>
+          <Image
+            style={styles.starIcon}
+            source={require('./images/star.png')}
+          />
+        </View>
+      </View>
+    </View>
+);
+
+  const renderReviews = ({ item }) => (
+    <Reviews 
+      title={item.title}
+      image_url={item.image_url}
+      description={item.description}
+      rating={item.rating}
+    />
+  );
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView 
+        style={{width: '100%'}}
+        contentContainerStyle={styles.scrollView} 
+        nestedScrollEnabled>
       <ImageBackground
         style={styles.storeImage}
         imageStyle={{borderRadius: 30}}
@@ -57,6 +118,13 @@ export default FoodPage = ({ route, navigation }) => {
         />
         <Text style={styles.detailsText}>{foodData.operating_hours}</Text>
       </View>
+      <Text style={styles.reviewCountText}> {foodData.review_count} Reviews</Text>
+      <FlatList
+        style={{width: '100%', marginTop: 10, height: 300,}}
+        contentContainerStyle={{alignItems: 'center'}}
+        data={reviews}
+        renderItem={renderReviews}
+      /> 
       </ScrollView>
     </SafeAreaView>
   )
@@ -65,6 +133,11 @@ export default FoodPage = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    //width: '100%',
+  },
+  scrollView: {
     alignItems: 'center',
     backgroundColor: 'white',
     width: '100%',
@@ -92,7 +165,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start', 
     alignItems: 'center',
-    marginLeft: 10, 
+    marginLeft: 35, 
     marginTop: 5,
   },
   locationIcon: {
@@ -108,7 +181,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flexDirection: 'row',
     alignSelf: 'flex-start', 
-    marginLeft: 9, 
+    marginLeft: 34, 
     marginTop: 5,
   },
   clockIcon: {
@@ -121,4 +194,57 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: 'grey'
   },
+  reviewCountText: {
+    alignSelf: 'flex-start',
+    marginTop: 20,
+    marginLeft: 35,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  review: {
+    width: 300,
+    height: 100,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    margin: 8,
+    borderRadius: 10,
+  },
+  reviewImage: {
+    width: 90,
+    height: 90,
+    borderRadius: 10,
+  },
+  descriptionContainer: {
+    width: 200,
+    alignItems: 'flex-start',
+    //backgroundColor: 'red'
+  },
+  titleText : {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginLeft: 3,
+    
+  },
+  descriptionText: {
+    fontSize: 10,
+    marginLeft: 3,
+    marginTop: 8,
+  },
+  starContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 25,
+    backgroundColor: 'white',
+    marginLeft: -70,
+    marginTop: 40,
+    borderRadius: 10,
+    borderWidth: 0.5,
+  },
+  starIcon: {
+    width: 20,
+    height: 20,
+  },
+
 })

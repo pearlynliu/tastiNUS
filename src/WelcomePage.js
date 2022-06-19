@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import { useState } from 'react';
 import { supabase, Guest } from './supabaseClient';
 
