@@ -2,6 +2,7 @@
   "expo": {
     "name": "tastiNUS",
     "slug": "tastiNUS",
+    "owner": "earth_is_flat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
