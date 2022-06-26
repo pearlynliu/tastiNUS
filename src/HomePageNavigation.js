@@ -4,6 +4,7 @@ import React from 'react';
 import HomePage from './HomePage';
 import FoodPage from './FoodPage';
 import SearchPage from './SearchPage';
+import RandomGenerator from "./RandomGenerator";
 import WorkInProgress from './WorkInProgress';
 
 export default HomePageNavigation = ({ navigation, route }) => {
@@ -45,7 +46,10 @@ export default HomePageNavigation = ({ navigation, route }) => {
        />
        <Stack.Screen
          name='RandomGenerator'
-         component={WorkInProgress}
+         component={RandomGenerator}
+         options={{
+          headerShown: false,
+        }}
        />
       <Stack.Screen
         name='Search'

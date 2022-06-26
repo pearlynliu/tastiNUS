@@ -45,3 +45,7 @@ Review (Unavailable to Guest logins)
 Voucher (Unavailable to Guest logins)
 - Users can find out what vouchers they have that are usable in NUS   
 - Currently do not support any vouchers yet   
+
+Random Food Generator   
+- Users can get a randomly generated food option as a reccomendation   
+- Allow users to head over to the food page to check the reccomendation out  
