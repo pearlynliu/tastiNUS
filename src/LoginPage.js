@@ -62,13 +62,13 @@ export default LoginPage = ({ navigation }) => {
           >
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity 
+          <TouchableOpacity 
             style={styles.forgetPasswordButton}
             onPress={forgotPassword}
             disabled={loading}
           >
             <Text style={[styles.buttonText, {paddingTop: 3}]}>Forgot Password?</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
           <View style={styles.signUpText}>
             <Text style={{fontWeight: 'bold'}}>Don't have an account?</Text>
             <TouchableOpacity 
