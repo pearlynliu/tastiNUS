@@ -15,6 +15,7 @@ export default ForgetPasswordPage = () => {
     } else {
       setEmail(null)
       Alert.alert('Check your email for verification link')
+      Keyboard.dismiss()
     }
     setLoading(false)
   }

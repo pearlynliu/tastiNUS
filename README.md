@@ -8,6 +8,8 @@ Application uses React Native for frontend, and Supabase as the backend database
 
 Sign up/Login   
 - User can sign up a personal account and log in to the app using their account   
+- User can use the forget password feature to receive an email to reset their password
+  if they lost the details of their account     
 
 
 Guest login   

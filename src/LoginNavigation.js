@@ -40,7 +40,7 @@ export default LoginNavigation = () => {
         />
         <Stack.Screen 
           name="ForgetPassword" 
-          component={WorkInProgress}
+          component={ForgetPasswordPage}
           options={{
             headerStyle: {backgroundColor: 'cornsilk'},
             title: ''

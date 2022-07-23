@@ -1,23 +1,48 @@
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
-import { useState } from 'react';
-import { supabase } from "./supabaseClient";
+import { useState, useEffect } from 'react';
+import { supabase, appUrl } from "./supabaseClient";
+import * as Linking from 'expo-linking';
 
-export default ResetPasswordPage = () => {
+export default ResetPasswordPage = ({ url }) => {
+  const [accessToken, setAccessToken] = useState(null)
   const [password, setPassword] = useState(null)
   const [confirmPassword, setConfirmPassword] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  function getParameterByName(name, url) {
+    if (!url) url = window?.location?.href || ''
+    // eslint-disable-next-line no-useless-escape
+    name = name.replace(/[\[\]]/g, '\\$&')
+    const regex = new RegExp('[?&#]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url)
+    if (!results) return null
+    if (!results[2]) return ''
+    return decodeURIComponent(results[2].replace(/\+/g, ' '))
+  }
+
+  useEffect(() => {
+    const token = getParameterByName('access_token', url)
+    setAccessToken(token)
+  }, [])
+
+  const token = getParameterByName('access_token', url)
+  
   const resetPassword = async () => {
     setLoading(true)
-    const { error, data } = await supabase.auth.api
-      .updateUser(access_token, { password : password })
-
-    if (error) {
-      Alert.alert(error.message)
+    if (password != confirmPassword) {
+      Alert.alert("Confirm password is different from password")
     } else {
-      setPassword(null)
-      setConfirmPassword(null)
-      Alert.alert('Password successfully changed')
+      const { error, data } = await supabase.auth.api
+        .updateUser(accessToken, { password : password })
+
+      if (error) {
+        Alert.alert(error.message)
+      } else {
+        setPassword(null)
+        setConfirmPassword(null)
+        Alert.alert('Password successfully changed')
+        Linking.openURL(appUrl)
+      }
     }
     setLoading(false)
   }
@@ -27,8 +52,7 @@ export default ResetPasswordPage = () => {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Text style={styles.text}>Key in your new password</Text>
-        </View>
-        <TextInput
+          <TextInput
             style={styles.input}
             value={password}
             onChangeText={password => setPassword(password)}
@@ -47,6 +71,7 @@ export default ResetPasswordPage = () => {
           >
             <Text style={styles.buttonText}>Reset Password</Text>
           </TouchableOpacity>
+        </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>
   )
