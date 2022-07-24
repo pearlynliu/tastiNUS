@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { refreshApp } from "./store/refresh";
 import * as ImagePicker from 'expo-image-picker';
 import BackButton from './components/BackButton'
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default SettingsPage = ({ navigation }) => {
   const [avatarUrl, setAvatarUrl] = useState()
@@ -145,7 +146,7 @@ export default SettingsPage = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <View style={styles.topBar}>

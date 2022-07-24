@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BackButton from './components/BackButton';
 import SearchOptionsPage from './SearchOptionsPage';
 import SearchResultsPage from './SearchResultsPage';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default SearchPage = ({ navigation }) => {
   const [search, setSearch] = useState('')
@@ -10,7 +11,7 @@ export default SearchPage = ({ navigation }) => {
   const [isSearching, setIsSearching] = useState(false)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <BackButton 
         style={styles.backButton}
         onPress={() => navigation.goBack()}

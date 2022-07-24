@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import { useState } from 'react';
 import { supabase, Guest } from './supabaseClient';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default WelcomePage = ({ navigation }) => {
 
@@ -22,7 +23,7 @@ export default WelcomePage = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <ImageBackground
       style={styles.image}
       source={require('./images/home_screen.jpg')}

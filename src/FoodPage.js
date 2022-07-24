@@ -2,6 +2,7 @@ import { LogBox, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpaci
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import BackButton from "./components/BackButton";
+import SafeViewAndroid from './components/SafeViewAndroid'
 import 'react-native-url-polyfill/auto';
 
 export default FoodPage = ({ route, navigation }) => {
@@ -87,7 +88,7 @@ export default FoodPage = ({ route, navigation }) => {
     />
   );
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <ScrollView 
         style={{width: '100%'}}
         contentContainerStyle={styles.scrollView} 

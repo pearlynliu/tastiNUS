@@ -1,6 +1,7 @@
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default SearchResultsPage = ({ navigation, search }) => {
   const [stores, setStores] = useState([])
@@ -70,7 +71,7 @@ export default SearchResultsPage = ({ navigation, search }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <FlatList
         style={{width: '100%'}}
         contentContainerStyle={{alignItems: 'center'}}

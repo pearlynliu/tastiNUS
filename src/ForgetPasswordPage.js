@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { useState } from 'react';
 import { supabase } from "./supabaseClient";
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default ForgetPasswordPage = () => {
   const [email, setEmail] = useState(null)
@@ -21,7 +22,7 @@ export default ForgetPasswordPage = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Text style={styles.text}>Enter your email address</Text>

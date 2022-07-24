@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Aler
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient';
 import BackButton from './components/BackButton';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default LoginPage = ({ navigation }) => {
   const [email, setEmail] = React.useState(null)
@@ -34,7 +35,7 @@ export default LoginPage = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <BackButton

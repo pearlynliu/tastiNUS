@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, ImageBackground, Image } from 'react-native';
 import { useState, useEffect } from 'react';
 import DATA from './FoodSuggestionData';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default SearchOptionsPage = ({ search, onPress }) => {
   const [filteredDataSource, setFilteredDataSource] = useState([]);
@@ -44,7 +45,7 @@ export default SearchOptionsPage = ({ search, onPress }) => {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <FlatList
         style={{width: '100%'}}
         contentContainerStyle={{alignItems: 'center'}}

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
-import { supabase } from './supabaseClient'
+import { supabase } from './supabaseClient';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default SignUpPage = ({navigation}) => {
   const [firstName, setFirstName] = React.useState(null)
@@ -42,7 +43,7 @@ export default SignUpPage = ({navigation}) => {
     } 
 
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.container}>
             <BackButton
