@@ -1,4 +1,4 @@
-import { Modal, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
+import { Modal, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import { useSelector, useDispatch } from "react-redux";

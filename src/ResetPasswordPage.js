@@ -2,6 +2,7 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Touc
 import { useState, useEffect } from 'react';
 import { supabase, appUrl } from "./supabaseClient";
 import * as Linking from 'expo-linking';
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default ResetPasswordPage = ({ url }) => {
   const [accessToken, setAccessToken] = useState(null)
@@ -48,7 +49,7 @@ export default ResetPasswordPage = ({ url }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Text style={styles.text}>Key in your new password</Text>

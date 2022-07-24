@@ -2,6 +2,7 @@ import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
 import { useSelector } from "react-redux";
+import SafeViewAndroid from './components/SafeViewAndroid'
 import 'react-native-url-polyfill/auto';
 
 export default HomePage = ({ session, navigation }) => {
@@ -91,7 +92,7 @@ export default HomePage = ({ session, navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <View style={styles.imageContainer}>
         <TouchableOpacity
           style={[styles.randomGenIcon, {marginRight: 230}]}

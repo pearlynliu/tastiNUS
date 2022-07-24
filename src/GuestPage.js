@@ -1,10 +1,11 @@
 import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState, useEffect } from 'react';
 import { supabase } from "./supabaseClient";
+import SafeViewAndroid from './components/SafeViewAndroid'
 
 export default GuestPage = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <Text>Create an account to give reviews/edit profile</Text>
       <TouchableOpacity
         style={styles.signOutButton}
