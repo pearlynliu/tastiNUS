@@ -164,9 +164,9 @@ export default SettingsPage = ({ navigation }) => {
           <Text style={styles.editProfileText}>Edit Profile</Text>
           <Image
             style={styles.profilePicture}
-            source={tempAvatar ? {url: tempAvatar} 
+            source={tempAvatar ? {uri: tempAvatar} 
                               : avatarUrl 
-                              ? {url: avatarUrl} 
+                              ? {uri: avatarUrl} 
                               : require('./images/profile_placeholder.png')}
           />
           <TouchableOpacity

@@ -268,7 +268,7 @@ export default ReviewsPage = ({ navigation }) => {
           />
           <Image
             style={styles.image}
-            source={{url: imageUrl}}
+            source={{uri: imageUrl}}
           />
         </View>
       </TouchableWithoutFeedback>

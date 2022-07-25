@@ -19,7 +19,7 @@ export default HomePage = ({ session, navigation }) => {
     >
       <Image
         style={styles.storeImage}
-        source={{url: image_url}}
+        source={{uri: image_url}}
         resizeMode= 'cover'
       />
       <Text style={styles.storeText}>{name}</Text>
@@ -106,7 +106,7 @@ export default HomePage = ({ session, navigation }) => {
         <Image
         style={styles.profilePic}
         source={avatar 
-                  ? {url: avatar} 
+                  ? {uri: avatar} 
                   : require('./images/profile_placeholder.png')}
         />
       </View>

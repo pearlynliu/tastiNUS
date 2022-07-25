@@ -128,7 +128,7 @@ export default ProfilePage = ({ navigation }) => {
     <View style={styles.review}>
       <Image
         style={styles.reviewImage}
-        source={{url: image_url}}
+        source={{uri: image_url}}
       />
       <View style={styles.descriptionContainer}>
         <TouchableOpacity
@@ -222,7 +222,7 @@ export default ProfilePage = ({ navigation }) => {
         <Image
           style={styles.profilePicture}
           source={profile.avatar_url 
-                    ? {url: profile.avatar_url} 
+                    ? {uri: profile.avatar_url} 
                     : require('./images/profile_placeholder.png')}
         />
         <View style={styles.buttonContainer}>

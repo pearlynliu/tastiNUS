@@ -63,7 +63,7 @@ export default FoodPage = ({ route, navigation }) => {
     <View style={styles.review}>
       <Image
         style={styles.reviewImage}
-        source={{url: image_url}}
+        source={{uri: image_url}}
       />
       <View style={styles.descriptionContainer}>
         <Text style={styles.titleText}> {title} </Text>
@@ -96,7 +96,7 @@ export default FoodPage = ({ route, navigation }) => {
       <ImageBackground
         style={styles.storeImage}
         imageStyle={{borderRadius: 30}}
-        source={{url: foodData.image_url}}
+        source={{uri: foodData.image_url}}
         resizeMode={'cover'}
       >
         <BackButton 
