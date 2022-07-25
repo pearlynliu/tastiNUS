@@ -13,7 +13,7 @@ export default SearchResultsPage = ({ navigation, search }) => {
     >
       <Image
         style={styles.storeImage}
-        source={{url: image_url}}
+        source={{uri: image_url}}
         resizeMode= 'cover'
       />
       <View style={styles.detailsContainter}>
